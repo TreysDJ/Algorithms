@@ -1,2 +1,3 @@
 # MyWay
-# Its my way
+# It's my way
+# Hello World!
