@@ -2,6 +2,7 @@ package bro.maks.JavaAlgorithmsCourse;
 import java.util.HashMap;
 
 public class MemoiZationFibonachi {
+    // привет
     public HashMap<Integer, Integer> fibonacheri = new HashMap<>();
     public int fibonachi(int number) {
         if (number < 0) {

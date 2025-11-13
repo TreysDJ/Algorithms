@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BackPackTest {
+    // привет
     @Test
     void testBasicScenario() {
         int capacity = 4;

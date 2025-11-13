@@ -1,6 +1,7 @@
 package bro.maks.JavaAlgorithmsCourse;
 
 public interface Map<V> {
+    // привет
     V get(String key);
 
     V put(String key, V value);

@@ -3,6 +3,7 @@ package bro.maks.JavaAlgorithmsCourse;
 import java.util.Scanner;
 
 public class EditDistBU {
+    // привет
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String a = scanner.nextLine();

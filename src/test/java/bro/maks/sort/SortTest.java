@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SortTest {
+    // привет
     private void testSortAlgorithm(Sort sorter, int[] arrActual, int[] arrExpected) {
         int[] arrActualCopy = Arrays.copyOf(arrActual, arrActual.length);
         sorter.sort(arrActualCopy);
@@ -21,6 +22,9 @@ public class SortTest {
         algorithms.add(new BubbleSort());
         algorithms.add(new SelectionSort());
         algorithms.add(new InsertionSort());
+        algorithms.add(new MergeSort());
+        algorithms.add(new QuickSort());
+        algorithms.add(new NotEqualsSort());
         for (Sort algorithm : algorithms) {
             testSortAlgorithm(algorithm, arrOriginal, arrExpected);
 

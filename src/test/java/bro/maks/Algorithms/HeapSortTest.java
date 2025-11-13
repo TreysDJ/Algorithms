@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class HeapSortTest {
+    // привет
 
     @Test
     void testEmptyArray() {

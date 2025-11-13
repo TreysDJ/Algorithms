@@ -1,22 +1,8 @@
 package bro.maks.sort;
 
-import java.util.Scanner;
-
-public class NotEqualsSort {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int length = scanner.nextInt();
-        int[] arr = new int[length];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = scanner.nextInt();
-        }
-        countSort(arr);
-        for (int j : arr) {
-            System.out.print(j + " ");
-        }
-    }
-
-    public static void countSort(int[] arr) {
+public class NotEqualsSort implements Sort {
+    // привет
+    public void sort(int[] arr) {
         int maxValue = 11;
         int[] count = new int[maxValue];
 

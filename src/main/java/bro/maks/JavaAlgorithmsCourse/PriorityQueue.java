@@ -3,6 +3,7 @@ package bro.maks.JavaAlgorithmsCourse;
 import java.util.*;
 
 public class PriorityQueue {
+    // привет
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int numCommands = Integer.parseInt(scanner.nextLine());

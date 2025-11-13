@@ -3,6 +3,7 @@ package bro.maks.JavaAlgorithmsCourse;
 import java.util.Scanner;
 
 public class LIS {
+    // привет
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int max = scanner.nextInt();
