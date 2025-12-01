@@ -1,4 +1,4 @@
-package bro.maks.JavaAlgorithmsCourse;
+package bro.maks.map;
 
 import java.util.Objects;
 
@@ -54,7 +54,6 @@ public interface Map<V> {
 
             for (Entry<V> entry = head; entry != null; entry = entry.next) {
                 if (entry.key.equals(key)) {
-                    V oldValue = entry.value;
                     entry.value = value;
                     return;
                 }

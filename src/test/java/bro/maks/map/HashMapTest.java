@@ -1,12 +1,10 @@
 package bro.maks.map;
 
 
-import bro.maks.JavaAlgorithmsCourse.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class HashMapTest {
-    // привет
 
     @Test
     void testPut() {
