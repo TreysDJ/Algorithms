@@ -1,6 +1,6 @@
 package bro.maks.Algorithms;
 
-import bro.maks.JavaAlgorithmsCourse.BackPack;
+import bro.maks.brawl.BackPack;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
