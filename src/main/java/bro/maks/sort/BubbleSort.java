@@ -1,7 +1,6 @@
 package bro.maks.sort;
 
 public class BubbleSort implements Sort {
-    // привет
     @Override
     public void sort(int[] arr) {
         boolean isSorted = false;

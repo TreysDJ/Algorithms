@@ -1,7 +1,6 @@
 package bro.maks.sort;
 
 public class QuickSort implements Sort {
-    // привет
     @Override
     public void sort(int[] arr) {
         quickSort(arr, 0, arr.length - 1);
@@ -41,6 +40,4 @@ public class QuickSort implements Sort {
         arr[index1] = arr[index2];
         arr[index2] = temp;
     }
-
-
 }

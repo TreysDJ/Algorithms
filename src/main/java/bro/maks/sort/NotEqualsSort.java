@@ -1,7 +1,6 @@
 package bro.maks.sort;
 
 public class NotEqualsSort implements Sort {
-    // привет
     public void sort(int[] arr) {
         int maxValue = 11;
         int[] count = new int[maxValue];

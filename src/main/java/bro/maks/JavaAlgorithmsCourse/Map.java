@@ -1,10 +1,11 @@
 package bro.maks.JavaAlgorithmsCourse;
 
+import java.util.Objects;
+
 public interface Map<V> {
-    // привет
     V get(String key);
 
-    V put(String key, V value);
+    void put(String key, V value);
 
     V remove(String key);
 
@@ -15,31 +16,31 @@ public interface Map<V> {
     boolean containsKey(String key);
 
     boolean containsValue(V value);
-
     class HashMap<V> implements Map<V> {
-        private final Object[] entries;
+        private final Entry<V>[] entries;
         private int current;
 
-        private final class Entry {
+        private static class Entry<V> {
             private final String key;
-            private final V value;
+            private V value;
+            private Entry<V> next;
 
-            private Entry(String key, V value) {
+            private Entry(String key, V value, Entry<V> next) {
                 this.key = key;
                 this.value = value;
+                this.next = next;
             }
         }
 
+        @SuppressWarnings("unchecked")
         public HashMap(int size) {
-            this.entries = new Object[size];
+            this.entries = new Entry[size];
             this.current = 0;
         }
 
-        @SuppressWarnings("unchecked")
         public V get(String key) {
-            int index = hashCode(key) % this.entries.length;
-            Entry entry = (Entry) this.entries[index];
-            if (entry != null) {
+            int index = getIndex(key);
+            for (Entry<V> entry = this.entries[index]; entry != null; entry = entry.next) {
                 if (entry.key.equals(key)) {
                     return entry.value;
                 }
@@ -47,28 +48,43 @@ public interface Map<V> {
             return null;
         }
 
-        public V put(String key, V value) {
-            Entry entry = new Entry(key, value);
-            int index = hashCode(key) % this.entries.length;
-            if (this.entries[index] == null) {
-                this.current++;
-                this.entries[index] = entry;
-                return value;
+        public void put(String key, V value) {
+            int index = getIndex(key);
+            Entry<V> head = this.entries[index];
+
+            for (Entry<V> entry = head; entry != null; entry = entry.next) {
+                if (entry.key.equals(key)) {
+                    V oldValue = entry.value;
+                    entry.value = value;
+                    return;
+                }
             }
-            return value;
+
+            Entry<V> newEntry = new Entry<>(key, value, head);
+            this.entries[index] = newEntry;
+            this.current++;
         }
 
-        @SuppressWarnings("unchecked")
         public V remove(String key) {
-            int index = hashCode(key) % this.entries.length;
+            int index = getIndex(key);
+            Entry<V> head = this.entries[index];
+            Entry<V> prev = null;
+            Entry<V> currentEntry = head;
 
-            Entry entry = (Entry) this.entries[index];
-            if (entry == null) {
-                return null;
+            while (currentEntry != null) {
+                if (currentEntry.key.equals(key)) {
+                    if (prev == null) {
+                        this.entries[index] = currentEntry.next;
+                    } else {
+                        prev.next = currentEntry.next;
+                    }
+                    this.current--;
+                    return currentEntry.value; // Возвращаем значение удаленного элемента.
+                }
+                prev = currentEntry;
+                currentEntry = currentEntry.next;
             }
-            this.entries[index] = null;
-            this.current--;
-            return entry.value;
+            return null;
         }
 
         public int size() {
@@ -76,21 +92,23 @@ public interface Map<V> {
         }
 
         public boolean isEmpty() {
-            // todo test
             return this.current == 0;
         }
 
         public boolean containsKey(String key) {
-            int index = hashCode(key) % this.entries.length;
-            return this.entries[index] != null;
+            int index = getIndex(key);
+            for (Entry<V> entry = this.entries[index]; entry != null; entry = entry.next) {
+                if (entry.key.equals(key)) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public boolean containsValue(V value) {
             for (int i = 0; i < this.entries.length; i++) {
-                // todo equals вместо ==
-                Entry entry = (Entry) this.entries[i];
-                if (entry != null) {
-                    if (entry.value.equals(value)) {
+                for (Entry<V> entry = this.entries[i]; entry != null; entry = entry.next) {
+                    if (Objects.equals(value, entry.value)) {
                         return true;
                     }
                 }
@@ -98,14 +116,11 @@ public interface Map<V> {
             return false;
         }
 
-        private static int hashCode(String key) {
-            int hashCode = 1;
-            for (int i = 0; i < key.length(); i++) {
-                int cur = (int) key.charAt(i);
-                hashCode *= cur;
+        private int getIndex(String key) {
+            if (key == null) {
+                return 0;
             }
-
-            return Math.abs(hashCode);
+            return Math.abs(key.hashCode()) % this.entries.length;
         }
     }
 }
