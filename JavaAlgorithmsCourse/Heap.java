@@ -15,6 +15,9 @@ public class Heap {
         this.size = 0;
     }
 
+    public Heap() {
+    }
+
     private void swap(int indexOne, int indexTwo) {
         int temp = this.heap[indexOne];
         this.heap[indexOne] = this.heap[indexTwo];
