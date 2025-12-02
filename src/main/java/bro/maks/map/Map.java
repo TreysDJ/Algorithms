@@ -78,7 +78,7 @@ public interface Map<V> {
                         prev.next = currentEntry.next;
                     }
                     this.current--;
-                    return currentEntry.value; // Возвращаем значение удаленного элемента.
+                    return currentEntry.value;
                 }
                 prev = currentEntry;
                 currentEntry = currentEntry.next;

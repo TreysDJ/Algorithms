@@ -1,5 +1,6 @@
 package bro.maks.sort;
 
+import bro.maks.JavaAlgorithmsCourse.HeapSort;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +24,7 @@ public class SortTest2 {
         algorithms.add(new MergeSort());
         algorithms.add(new QuickSort());
         algorithms.add(new NotEqualsSort());
+        algorithms.add(new HeapSort());
         for (Sort algorithm : algorithms) {
             testSortAlgorithm(algorithm, arrOriginal, arrExpected);
         }
