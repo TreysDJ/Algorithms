@@ -1,6 +1,5 @@
 package bro.maks.sort;
 
-import bro.maks.JavaAlgorithmsCourse.HeapSort;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

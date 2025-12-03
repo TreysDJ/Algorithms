@@ -8,7 +8,7 @@ public class HashMapTest {
 
     @Test
     void testPut() {
-        Map.HashMap<Integer> values = new Map.HashMap<>(64);
+        HashMap<Integer> values = new HashMap<>(64);
         Integer expeted = 5;
         values.put("Obezyana", expeted);
         Integer actual = values.get("Obezyana");
@@ -17,13 +17,13 @@ public class HashMapTest {
 
     @Test
     void shouldReturnNullWhenNoKey() {
-        Map.HashMap<Integer> values = new Map.HashMap<>(64);
+        HashMap<Integer> values = new HashMap<>(64);
         Assertions.assertNull(values.get("Bjerfjldlkrj"));
     }
 
     @Test
     void shouldRemoveValue() {
-        Map.HashMap<Integer> values = new Map.HashMap<>(64);
+        HashMap<Integer> values = new HashMap<>(64);
         values.put("Bj", 4);
         values.put("Bs", 3);
         Assertions.assertEquals(4, values.remove("Bj"));
@@ -31,7 +31,7 @@ public class HashMapTest {
 
     @Test
     void testSize() {
-        Map.HashMap<Integer> values = new Map.HashMap<>(64);
+        HashMap<Integer> values = new HashMap<>(64);
         values.put("Obj", 4);
         values.put("Zie", 3);
         Assertions.assertEquals(2, values.size());
@@ -50,7 +50,7 @@ public class HashMapTest {
 
     @Test
     void shouldReturnTrueWhenKeyExists() {
-        Map.HashMap<Integer> values = new Map.HashMap<>(64);
+        HashMap<Integer> values = new HashMap<>(64);
         values.put("Bj", 5);
         values.put("Bs", 4);
         Assertions.assertTrue(values.containsKey("Bj"));
@@ -58,7 +58,7 @@ public class HashMapTest {
 
     @Test
     void shouldReturnFalseWhenKeyDoesNotExist() {
-        Map.HashMap<Integer> values = new Map.HashMap<>(64);
+        HashMap<Integer> values = new HashMap<>(64);
         values.put("Bj", 5);
         values.put("Bs", 4);
         Assertions.assertFalse(values.containsKey("Lox"));
@@ -66,7 +66,7 @@ public class HashMapTest {
 
     @Test
     void shouldReturnTrueWhenValueExists() {
-        Map.HashMap<Integer> values = new Map.HashMap<>(64);
+        HashMap<Integer> values = new HashMap<>(64);
         values.put("Bj", 5);
         values.put("Bs", 4);
         Assertions.assertTrue(values.containsValue(5));
@@ -74,7 +74,7 @@ public class HashMapTest {
 
     @Test
     void shouldReturnFalseWhenValueDoesNotExist() {
-        Map.HashMap<Integer> values = new Map.HashMap<>(64);
+        HashMap<Integer> values = new HashMap<>(64);
         values.put("Bj", 5);
         values.put("Bs", 4);
         Assertions.assertFalse(values.containsValue(555));
@@ -82,13 +82,13 @@ public class HashMapTest {
 
     @Test
     void shouldReturnTrueWhenValuesIsEmptyNoInput() {
-        Map.HashMap<Integer> values = new Map.HashMap<>(64);
+        HashMap<Integer> values = new HashMap<>(64);
         Assertions.assertTrue(values.isEmpty());
     }
 
     @Test
     void shouldReturnTrueWhenValuesIsEmptyWithInput() {
-        Map.HashMap<Integer> values = new Map.HashMap<>(64);
+        HashMap<Integer> values = new HashMap<>(64);
         values.put("Bj", 4);
         values.remove("Bj");
         Assertions.assertTrue(values.isEmpty());
@@ -96,7 +96,7 @@ public class HashMapTest {
 
     @Test
     void shouldReturnFalseWhenValuesIsEmptyWithInput() {
-        Map.HashMap<Integer> values = new Map.HashMap<>(64);
+        HashMap<Integer> values = new HashMap<>(64);
         values.put("Bj", 4);
         Assertions.assertFalse(values.isEmpty());
     }
@@ -128,7 +128,7 @@ public class HashMapTest {
 
     @Test
     void shouldReturnTrueWhenEqualsReturnTrue() {
-        Map.HashMap<Person> values = new Map.HashMap<>(64);
+        HashMap<Person> values = new HashMap<>(64);
         Person maks = new Person(5, "Кто в классику играл в цирке не смеётся");
         Person maksDuplicate = new Person(5, "Перо в заднице не значит что ты павлин");
         values.put("Bjj", maks);
@@ -138,7 +138,7 @@ public class HashMapTest {
 
     @Test
     void shouldReturnFalseWhenEqualsReturnFalse() {
-        Map.HashMap<Person> values = new Map.HashMap<>(64);
+        HashMap<Person> values = new HashMap<>(64);
         Person maks = new Person(5, "Кто в классику играл в цирке не смеётся");
         Person dima = new Person(7, "Перо в заднице не значит что ты павлин");
         Assertions.assertFalse(maks.equals(dima));
@@ -183,7 +183,7 @@ public class HashMapTest {
 
     @Test
     void shouldReturnValueWnenCollisiton() {
-        Map.HashMap<dayOfBirthDay> values = new Map.HashMap<>(64);
+        HashMap<dayOfBirthDay> values = new HashMap<>(64);
         dayOfBirthDay max = new dayOfBirthDay("Max", 16);
         dayOfBirthDay dima = new dayOfBirthDay("Xam", 12);
         values.put("max", max);
@@ -199,42 +199,29 @@ public class HashMapTest {
     }
 
     @Test
-    void testCollisionPutsAndGets() {
-        Map.HashMap<Integer> values = new Map.HashMap<>(2);
-        values.put("Коко", 100);
-        values.put("Хохо", 200);
-        values.put("л", 300);
-
-        Assertions.assertEquals(3, values.size());
-        Assertions.assertEquals(100, values.get("Коко"));
-        Assertions.assertEquals(200, values.get("Хохо"));
-        Assertions.assertEquals(300, values.get("л"));
-
-        values.put("Коко", 150);
-        Assertions.assertEquals(150, values.get("Коко"));
-        Assertions.assertEquals(3, values.size());
+    void testPutsWithCollisionUsingStrings() {
+        HashMap<Integer> values = new HashMap<>(16);
+        String key1 = "Aa";
+        String key2 = "BB";
+        values.put(key1, 100);
+        values.put(key2, 200);
+        Assertions.assertEquals(2, values.size());
+        Assertions.assertEquals(100, values.get(key1));
+        Assertions.assertEquals(200, values.get(key2));
     }
 
     @Test
-    void testCollisionRemovals() {
-        Map.HashMap<Integer> values = new Map.HashMap<>(2);
-        values.put("Бравл", 1);
-        values.put("Старс", 2);
-        values.put("Топ", 3);
-
-        Assertions.assertEquals(3, values.size());
-
-        Assertions.assertEquals(2, values.remove("Старс"));
-        Assertions.assertNull(values.get("Старс"));
+    void testRemovalsWithCollisionUsingStrings() {
+        HashMap<Integer> values = new HashMap<>(16);
+        String key1 = "Aa";
+        String key2 = "BB";
+        values.put(key1, 100);
+        values.put(key2, 200);
         Assertions.assertEquals(2, values.size());
-
-        Assertions.assertEquals(1, values.remove("Бравл"));
-        Assertions.assertNull(values.get("Бравл"));
+        Integer removedValue = values.remove(key1);
+        Assertions.assertEquals(100, removedValue);
         Assertions.assertEquals(1, values.size());
-
-        Assertions.assertEquals(3, values.remove("Топ"));
-        Assertions.assertNull(values.get("Топ"));
-        Assertions.assertEquals(0, values.size());
-        Assertions.assertTrue(values.isEmpty());
+        Assertions.assertNull(values.get(key1));
+        Assertions.assertEquals(200, values.get(key2));
     }
 }

@@ -1,8 +1,6 @@
-package bro.maks.JavaAlgorithmsCourse;
+package bro.maks.sort;
 
-import bro.maks.sort.Sort;
-
-import java.util.Scanner;
+import bro.maks.JavaAlgorithmsCourse.Heap;
 
 public class HeapSort implements Sort {
 
