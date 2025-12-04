@@ -16,5 +16,4 @@ public interface Map<V> {
     boolean containsKey(String key);
 
     boolean containsValue(V value);
-
 }
