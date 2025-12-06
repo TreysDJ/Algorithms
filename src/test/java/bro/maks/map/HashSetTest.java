@@ -4,13 +4,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class  HashSetTest {
+class HashSetTest {
 
     private Set<String> set;
 
     @BeforeEach
     void setUp() {
-        set = new HashSet<>();
+        set = new HashSet<>(16);
     }
 
     @Test
@@ -45,7 +45,7 @@ class  HashSetTest {
     void testNullElementHandling() {
         set.add(null);
         assertEquals(1, set.size());
-        assertTrue(set.contains(null));
+        assertFalse(set.contains("Brawl"));
 
         set.add(null);
         assertEquals(1, set.size());

@@ -1,34 +1,40 @@
 package bro.maks.map;
 
-
-import java.util.HashMap;
-
 public class HashSet<V> implements Set<V> {
-    private HashMap<V, Object> map;
+    private bro.maks.map.HashMap<Object> map;
     private static final Object plug = null;
 
-    public HashSet() {
-        map = new HashMap<>();
+    public HashSet(int capacity) {
+        map = new bro.maks.map.HashMap<>(capacity);
     }
 
     @Override
-    public void add(V element) {
-        map.put(element, plug);
+    public void add(String element) {
+        if (!(map.containsKey(element))) {
+            map.put(element, plug);
+        }
     }
 
     @Override
-    public V remove(Object element) {
+    public String remove(String element) {
+        if (element == null) {
+            if (map.containsKey(element)) {
+                map.remove(element);
+                return null;
+            }
+        }
+
         if (map.containsKey(element)) {
             map.remove(element);
-            V castedElement = (V) element;
-            return castedElement;
+            return element;
         }
         return null;
     }
 
     @Override
-    public boolean contains(Object element) {
+    public boolean contains(String element) {
         return map.containsKey(element);
+
     }
 
     @Override

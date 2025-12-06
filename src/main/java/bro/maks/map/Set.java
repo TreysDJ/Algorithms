@@ -1,11 +1,11 @@
 package bro.maks.map;
 
 public interface Set<V> {
-    void add(V element);
+    void add(String element);
 
-    V remove(Object element);
+    String remove(String element);
 
-    boolean contains(Object element);
+    boolean contains(String element);
 
     int size();
 }

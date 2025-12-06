@@ -57,6 +57,17 @@ class HashMap<V> implements Map<V> {
         Entry<V> currentEntry = head;
 
         while (currentEntry != null) {
+            if (key == null) {
+                if (currentEntry.key == key) {
+                    if (prev == null) {
+                        this.entries[index] = currentEntry.next;
+                    } else {
+                        prev.next = currentEntry.next;
+                    }
+                    this.current--;
+                    return currentEntry.value;
+                }
+            }
             if (currentEntry.key.equals(key)) {
                 if (prev == null) {
                     this.entries[index] = currentEntry.next;
@@ -83,6 +94,12 @@ class HashMap<V> implements Map<V> {
     public boolean containsKey(String key) {
         int index = getIndex(key);
         for (Entry<V> entry = this.entries[index]; entry != null; entry = entry.next) {
+            if (key == null) {
+                if (entry.key == null) {
+                    return true;
+                }
+                continue;
+            }
             if (entry.key.equals(key)) {
                 return true;
             }
