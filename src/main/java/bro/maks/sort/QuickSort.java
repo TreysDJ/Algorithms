@@ -14,7 +14,7 @@ public class QuickSort implements Sort {
         }
     }
 
-    public static int partition(int[] arr, int left, int right) {
+     private static int partition(int[] arr, int left, int right) {
         int leftIndex = left;
         int rightIndex = right;
 
@@ -35,7 +35,7 @@ public class QuickSort implements Sort {
         return leftIndex;
     }
 
-    public static void swap(int[] arr, int index1, int index2) {
+    private static void swap(int[] arr, int index1, int index2) {
         int temp = arr[index1];
         arr[index1] = arr[index2];
         arr[index2] = temp;

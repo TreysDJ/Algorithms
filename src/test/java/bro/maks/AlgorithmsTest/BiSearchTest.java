@@ -1,4 +1,4 @@
-package bro.maks.Algorithms;
+package bro.maks.AlgorithmsTest;
 
 import bro.maks.JavaAlgorithmsCourse.BiSearch;
 import org.junit.jupiter.api.Test;
