@@ -27,7 +27,7 @@ class HashMap<V> implements Map<V> {
     public V get(String key) {
         int index = getIndex(key);
         for (Entry<V> entry = this.entries[index]; entry != null; entry = entry.next) {
-            if (entry.key.equals(key)) {
+            if (Objects.equals(entry.key, key)) {
                 return entry.value;
             }
         }
@@ -39,7 +39,7 @@ class HashMap<V> implements Map<V> {
         Entry<V> head = this.entries[index];
 
         for (Entry<V> entry = head; entry != null; entry = entry.next) {
-            if (entry.key.equals(key)) {
+            if (Objects.equals(entry.key, key)) {
                 entry.value = value;
                 return;
             }
@@ -57,18 +57,7 @@ class HashMap<V> implements Map<V> {
         Entry<V> currentEntry = head;
 
         while (currentEntry != null) {
-            if (key == null) {
-                if (currentEntry.key == key) {
-                    if (prev == null) {
-                        this.entries[index] = currentEntry.next;
-                    } else {
-                        prev.next = currentEntry.next;
-                    }
-                    this.current--;
-                    return currentEntry.value;
-                }
-            }
-            if (currentEntry.key.equals(key)) {
+            if (Objects.equals(currentEntry.key, key)) {
                 if (prev == null) {
                     this.entries[index] = currentEntry.next;
                 } else {
@@ -94,13 +83,7 @@ class HashMap<V> implements Map<V> {
     public boolean containsKey(String key) {
         int index = getIndex(key);
         for (Entry<V> entry = this.entries[index]; entry != null; entry = entry.next) {
-            if (key == null) {
-                if (entry.key == null) {
-                    return true;
-                }
-                continue;
-            }
-            if (entry.key.equals(key)) {
+            if (Objects.equals(entry.key, key)) {
                 return true;
             }
         }

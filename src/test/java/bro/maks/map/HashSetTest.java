@@ -45,7 +45,7 @@ class HashSetTest {
     void testNullElementHandling() {
         set.add(null);
         assertEquals(1, set.size());
-        assertFalse(set.contains("Brawl"));
+        assertTrue(set.contains(null));
 
         set.add(null);
         assertEquals(1, set.size());

@@ -224,4 +224,69 @@ public class HashMapTest {
         Assertions.assertNull(values.get(key1));
         Assertions.assertEquals(200, values.get(key2));
     }
+
+    @Test
+    void testNullPutDefault() {
+        HashMap<Integer> values = new HashMap<>(64);
+        String key1 = null;
+        values.put(key1, 100);
+        Assertions.assertEquals(1, values.size());
+        Assertions.assertTrue(values.containsKey(key1));
+    }
+
+    @Test
+    void testNullRemoveDefault() {
+        HashMap<Integer> values = new HashMap<>(64);
+        String key1 = null;
+        values.put(key1, 100);
+        Assertions.assertTrue(values.containsKey(key1));
+        values.remove(key1);
+        Assertions.assertEquals(0, values.size());
+        Assertions.assertEquals(null, values.remove(key1));
+    }
+
+    @Test
+    void testNullGetDefaultAndWhenKeyEquals() {
+        HashMap<Integer> values = new HashMap<>(64);
+        String key1 = null;
+        values.put(key1, 100);
+        Assertions.assertEquals(1, values.size());
+        Assertions.assertEquals(100, values.get(key1));
+        values.put(null, 200);
+        Assertions.assertEquals(1, values.size());
+        Assertions.assertEquals(200, values.get(null));
+    }
+
+    @Test
+    void testPutAndGetNullValue() {
+        HashMap<String> map = new HashMap<>(16);
+        map.put("key1", null);
+        Assertions.assertEquals(1, map.size());
+        Assertions.assertTrue(map.containsKey("key1"));
+        Assertions.assertNull(map.get("key1"));
+    }
+
+    @Test
+    void testContainsNullValue() {
+        HashMap<String> map = new HashMap<>(16);
+        map.put("key1", "value1");
+        Assertions.assertFalse(map.containsValue(null));
+        map.put("key2", null);
+        Assertions.assertTrue(map.containsValue(null));
+    }
+
+    @Test
+    void testPutGetRemoveNullKeyAndNullValue() {
+        HashMap<String> map = new HashMap<>(16);
+        map.put(null, null);
+
+        Assertions.assertEquals(1, map.size());
+        Assertions.assertTrue(map.containsKey(null));
+        Assertions.assertNull(map.get(null));
+        Assertions.assertTrue(map.containsValue(null));
+
+        map.remove(null);
+        Assertions.assertTrue(map.isEmpty());
+        Assertions.assertFalse(map.containsKey(null));
+    }
 }
