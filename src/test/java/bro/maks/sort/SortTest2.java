@@ -1,15 +1,13 @@
 package bro.maks.sort;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-
 import java.util.Arrays;
 import java.util.List;
 
-public class SortTest {
-    // привет
+public class SortTest2 {
     private void testSortAlgorithm(Sort sorter, int[] arrActual, int[] arrExpected) {
         int[] arrActualCopy = Arrays.copyOf(arrActual, arrActual.length);
         sorter.sort(arrActualCopy);
@@ -25,12 +23,9 @@ public class SortTest {
         algorithms.add(new MergeSort());
         algorithms.add(new QuickSort());
         algorithms.add(new NotEqualsSort());
+        algorithms.add(new HeapSort());
         for (Sort algorithm : algorithms) {
             testSortAlgorithm(algorithm, arrOriginal, arrExpected);
-
-            Sort bubblesort = new BubbleSort();
-            testSortAlgorithm(bubblesort, arrOriginal, arrExpected);
-            // что хранит баблесорт?
         }
     }
 
@@ -40,6 +35,7 @@ public class SortTest {
         int[] arrExpected = {1, 3, 5, 5, 7, 8};
         testAllAlgorithms(arrOriginal, arrExpected);
     }
+
 
     @Test
     void testArrayWithEqualElements() {
@@ -81,5 +77,3 @@ public class SortTest {
         testAllAlgorithms(arrOriginal, arrExpected);
     }
 }
-
-
