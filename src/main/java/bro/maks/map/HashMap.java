@@ -91,8 +91,8 @@ class HashMap<V> implements Map<V> {
     }
 
     public boolean containsValue(V value) {
-        for (int i = 0; i < this.entries.length; i++) {
-            for (Entry<V> entry = this.entries[i]; entry != null; entry = entry.next) {
+        for (Entry<V> vEntry : this.entries) {
+            for (Entry<V> entry = vEntry; entry != null; entry = entry.next) {
                 if (Objects.equals(value, entry.value)) {
                     return true;
                 }
