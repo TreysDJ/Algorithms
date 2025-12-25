@@ -9,11 +9,11 @@ public class LinkedQueue<E> implements Queue<E> {
 
     }
 
-    class Node {
+    private class Node {
         private Node next;
         private E value;
 
-        public Node(E value) {
+        private Node(E value) {
             this.value = value;
             this.next = null;
         }

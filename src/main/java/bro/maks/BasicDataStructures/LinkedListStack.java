@@ -13,7 +13,7 @@ public class LinkedListStack<E> implements Stack<E> {
         private final E value;
         private Node next;
 
-        public Node(E value) {
+        private Node(E value) {
             this.value = value;
             this.next = null;
         }

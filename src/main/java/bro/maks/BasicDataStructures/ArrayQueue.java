@@ -50,7 +50,7 @@ public class ArrayQueue<E> implements Queue<E> {
         return this.currentSize == 0;
     }
 
-    public void multipleSize() {
+    private void multipleSize() {
         int size;
         int index = 0;
 

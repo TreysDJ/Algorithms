@@ -14,7 +14,7 @@ public class StackParameterizedTest {
 
     static Stream<Stack<String>> stack() {
         return Stream.of(
-                new ArrayStack<>(10), new LinkedListStack<>());
+                new ArrayStack<>(16), new LinkedListStack<>());
     }
 
     @ParameterizedTest()
