@@ -37,6 +37,7 @@ public class LinkedQueue<E> implements Queue<E> {
         if (!isEmpty()) {
             E current = this.head.value;
             this.head = this.head.next;
+            this.currentSize--;
             return current;
         }
         return null;

@@ -6,9 +6,10 @@ public class LinkedListStack<E> implements Stack<E> {
 
     public LinkedListStack() {
         this.top = null;
+        this.size = 0;
     }
 
-    public class Node {
+    private class Node {
         private final E value;
         private Node next;
 
