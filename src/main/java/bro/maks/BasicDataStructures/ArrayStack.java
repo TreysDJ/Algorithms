@@ -4,14 +4,18 @@ public class ArrayStack<E> implements Stack<E> {
     private E[] arr;
     private int currentSize = 0;
 
-    public ArrayStack(int size) {
+    public ArrayStack() {
+        this(4);
+    }
+
+    private ArrayStack(int size) {
         this.arr = (E[]) new Object[size];
     }
 
     @Override
     public void push(E element) {
         if (this.currentSize == this.arr.length) {
-            multipleSize();
+            grow();
         }
         this.arr[this.currentSize] = element;
         this.currentSize++;
@@ -37,7 +41,7 @@ public class ArrayStack<E> implements Stack<E> {
         return null;
     }
 
-    private void multipleSize() {
+    private void grow() {
         int newSize;
 
         if (this.arr.length == 0) {

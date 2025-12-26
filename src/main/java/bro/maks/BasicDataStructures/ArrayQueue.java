@@ -6,14 +6,18 @@ public class ArrayQueue<E> implements Queue<E> {
     private int head;
     private int tail;
 
-    public ArrayQueue(int size) {
+    public ArrayQueue() {
+        this(4);
+    }
+
+    private ArrayQueue(int size) {
         this.arr = (E[]) new Object[size];
     }
 
     @Override
     public void push(E element) {
         if (this.currentSize == this.arr.length) {
-            multipleSize();
+            grow();
         }
         this.arr[this.tail] = element;
         this.tail = (this.tail + 1) % this.arr.length;
@@ -50,9 +54,8 @@ public class ArrayQueue<E> implements Queue<E> {
         return this.currentSize == 0;
     }
 
-    private void multipleSize() {
+    private void grow() {
         int size;
-        int index = 0;
 
         if (this.arr.length == 0) {
             size = 1;
@@ -64,7 +67,7 @@ public class ArrayQueue<E> implements Queue<E> {
 
         for (int i = 0; i < this.currentSize; i++) {
             int oldIndex = (this.head + i) % this.arr.length;
-            newArr[index] = this.arr[oldIndex];
+            newArr[i] = this.arr[oldIndex];
         }
         this.head = 0;
         this.tail = this.currentSize;

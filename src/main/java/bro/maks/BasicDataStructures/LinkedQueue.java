@@ -5,8 +5,10 @@ public class LinkedQueue<E> implements Queue<E> {
     private Node tail;
     private int currentSize;
 
-    public LinkedQueue(E value) {
-
+    public LinkedQueue() {
+        this.head = null;
+        this.tail = null;
+        this.currentSize = 0;
     }
 
     private class Node {

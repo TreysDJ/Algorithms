@@ -1,8 +1,11 @@
 package bro.maks.BasicDataStructuresTest;
 
+import bro.maks.BasicDataStructures.ArrayQueue;
 import bro.maks.BasicDataStructures.ArrayStack;
 import bro.maks.BasicDataStructures.LinkedListStack;
 import bro.maks.BasicDataStructures.Stack;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -14,7 +17,7 @@ public class StackParameterizedTest {
 
     static Stream<Stack<String>> stack() {
         return Stream.of(
-                new ArrayStack<>(16), new LinkedListStack<>());
+                new ArrayStack<>(), new LinkedListStack<>());
     }
 
     @ParameterizedTest()
@@ -113,5 +116,25 @@ public class StackParameterizedTest {
         }
         assertTrue(stack.isEmpty());
         assertNull(stack.pop());
+    }
+
+    @Test
+    void testWhenSizeIsCrowdedArrayStack() {
+        ArrayStack<String> stack = new ArrayStack();
+
+        Assertions.assertTrue(stack.isEmpty());
+        stack.push("Бравл");
+        stack.push("Старс");
+        stack.push("Топ");
+        stack.push("Или нет?");
+
+        Assertions.assertEquals(4, stack.size());
+        stack.push("Или всё таки да...");
+        Assertions.assertFalse(stack.isEmpty());
+        Assertions.assertEquals(5, stack.size());
+
+        Assertions.assertEquals("Или всё таки да...", stack.peek());
+        Assertions.assertEquals("Или всё таки да...", stack.pop());;
+        Assertions.assertEquals(4, stack.size());
     }
 }

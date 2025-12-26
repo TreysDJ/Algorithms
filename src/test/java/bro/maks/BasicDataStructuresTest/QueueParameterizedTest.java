@@ -3,15 +3,17 @@ package bro.maks.BasicDataStructuresTest;
 import bro.maks.BasicDataStructures.ArrayQueue;
 import bro.maks.BasicDataStructures.LinkedQueue;
 import bro.maks.BasicDataStructures.Queue;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class QueueParameterizedTest {
     static Stream<Queue<String>> queue() {
-        return Stream.of(
-                new ArrayQueue<>(16), new LinkedQueue<>(null));
+        return Stream.of(new ArrayQueue<>(), new LinkedQueue<>());
     }
 
     @ParameterizedTest()
@@ -74,7 +76,7 @@ public class QueueParameterizedTest {
         assertNull(queue.pop());
     }
 
-    @ParameterizedTest( )
+    @ParameterizedTest()
     @MethodSource("queue")
     void testPeekFromEmptyQueueReturnsNull(Queue<String> queue) {
         assertTrue(queue.isEmpty());
@@ -96,5 +98,25 @@ public class QueueParameterizedTest {
         }
         assertTrue(queue.isEmpty());
         assertNull(queue.pop());
+    }
+
+    @Test
+    void testWhenSizeIsCrowdedArrayQueue() {
+        ArrayQueue<String> queue = new ArrayQueue();
+
+        Assertions.assertTrue(queue.isEmpty());
+        queue.push("Бравл");
+        queue.push("Старс");
+        queue.push("Топ");
+        queue.push("Или нет?");
+
+        Assertions.assertEquals(4, queue.size());
+        queue.push("Или всё таки да...");
+        Assertions.assertFalse(queue.isEmpty());
+        Assertions.assertEquals(5, queue.size());
+
+        Assertions.assertEquals("Бравл", queue.peek());
+        Assertions.assertEquals("Бравл", queue.pop());;
+        Assertions.assertEquals(4, queue.size());
     }
 }
