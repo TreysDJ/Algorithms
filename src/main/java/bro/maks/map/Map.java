@@ -1,7 +1,5 @@
 package bro.maks.map;
 
-import java.util.Objects;
-
 public interface Map<V> {
     V get(String key);
 
