@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class SortTest2 {
+public class SortTest {
     private void testSortAlgorithm(Sort sorter, int[] arrActual, int[] arrExpected) {
         int[] arrActualCopy = Arrays.copyOf(arrActual, arrActual.length);
         sorter.sort(arrActualCopy);
