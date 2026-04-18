@@ -1,4 +1,4 @@
-package bro.maks.tree;
+package bro.maks.trie;
 
 public class StringTrie {
     private static class Node {

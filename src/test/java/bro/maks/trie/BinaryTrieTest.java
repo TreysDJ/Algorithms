@@ -1,4 +1,4 @@
-package bro.maks.tree;
+package bro.maks.trie;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
